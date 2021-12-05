@@ -58,7 +58,16 @@ def dealHands(numPlayers):
 def printHand(handNum):
     for i in range(len(handNum)):
         print(getColor(handNum[i]) + str(getRank(handNum[i])) + " (" +str(handNum[i])+ ")")
+    print("\n")
 
-dealHands(4)
-for i in range(playerHands):
-    printHand(i)
+numPlayers = input("How many people are playing?")
+gameOver = False
+playerTurn = 0
+
+dealHands(int(numPlayers))
+for i in range(len(playerHands)):
+    if playerTurn != i:
+        print("Player " + str(i) + "'s hand")
+        printHand(playerHands[i])
+
+action = input("What would you like to do?")
