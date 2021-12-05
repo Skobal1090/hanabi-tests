@@ -1,4 +1,5 @@
 import random
+import os
 
 #normRank -> actual value
 #0 <-1
@@ -42,6 +43,19 @@ def getColor(card):
     else:
         return "White "
 
+def getColorInternal(card):
+    color = card//10
+    if(color == 0):
+        return "91"
+    elif(color == 1):
+        return "33"
+    elif(color==2):
+        return "94"
+    elif(color==3):
+        return "92"
+    else:
+        return "97"
+
 def dealHand():
     hand = []
     while len(hand)<handSize:
@@ -57,8 +71,8 @@ def dealHands(numPlayers):
 
 def printHand(handNum):
     for i in range(len(handNum)):
-        print(getColor(handNum[i]) + str(getRank(handNum[i])) + " (" +str(handNum[i])+ ")")
-    print("\n")
+        os.system(f"Echo \033[{getColorInternal(handNum[i])}m {getColor(handNum[i]) + str(getRank(handNum[i]))} ({str(handNum[i])}) \033[0m")
+    print()
 
 numPlayers = input("How many people are playing?")
 gameOver = False
