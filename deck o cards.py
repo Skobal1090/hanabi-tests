@@ -1,4 +1,5 @@
 import random
+import os
 
 def getRank(card):
     normRank=card%13
@@ -24,13 +25,25 @@ def getSuit(card):
     elif(normSuit==3):
         return " of Diamonds"
 
-hand = []
-handSize = 52
+dealtCards = []
+handSize = 5
+hands = []
+numHands = 4
 
-while len(hand)<handSize:
-    card=random.randint(0,51)
-    if(card not in hand):
-        hand.append(card)
+def dealHand():
+    hand = []
+    while len(hand)<handSize:
+        card=random.randint(0,51)
+        if(card not in dealtCards):
+            dealtCards.append(card)
+            hand.append(card)
+    return hand
 
-for i in range(len(hand)):
-    print(getRank(hand[i]) + getSuit(hand[i]) + " (" +str(hand[i])+ ")")
+def printHand(hand):
+    for i in range(len(hand)):
+        print(getRank(hand[i]) + getSuit(hand[i]) + " (" +str(hand[i])+ ")")
+
+for i in range(numHands):
+    hands.append(dealHand())
+
+printHand(hands[2])
