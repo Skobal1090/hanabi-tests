@@ -74,6 +74,21 @@ def printHand(handNum):
         os.system(f"Echo \033[{getColorInternal(handNum[i])}m {getColor(handNum[i]) + str(getRank(handNum[i]))} ({str(handNum[i])}) \033[0m")
     print()
 
+def printPlayerInfo():
+    print(f"Player {str(currentPlayer+1)}'s Turn: \n")
+    playerHandOutput = ""
+    for i in range(numPlayers):
+        if currentPlayer != i:
+            playerHandOutput += '{0:25}'.format(f"Player {i+1}'s Hand:")
+    print(playerHandOutput)
+
+for i in range(handSize):
+    output = ""
+    for j in range(numPlayers):
+        if(j != currentPlayer):
+            output += '{0:34}'.format(getFormattedCardText(playerHands[j][i]))
+    os.system(f"Echo {output}")
+
 numPlayers = input("How many people are playing?")
 gameOver = False
 playerTurn = 0
